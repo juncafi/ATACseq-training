@@ -1,9 +1,12 @@
-site_name: Github pages for teaching
+site_name: Introduction to NGS ATAC-seq data analysis 
 
 nav:
     - Home: index.md
     - Precourse preparations: precourse.md
-    - Exercises: exercises.md
+    - Course schedule: course_schedule.md
+    - Day1:
+      - 00 Connect to server : 00_connect_to_server.md
+      - 01 Filter bam files : 01_filter_bam_files.md  
 
 theme:
   name: material

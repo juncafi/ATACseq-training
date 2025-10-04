@@ -9,18 +9,22 @@
       
       
       
+        <link rel="prev" href="../01_filter_bam_files/">
       
       
-      <link rel="icon" href="/assets/images/SIB_logo.svg">
+        <link rel="next" href="../03_peak_calling/">
+      
+      
+      <link rel="icon" href="../../assets/images/SIB_logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Introduction to NGS ATAC-seq data analysis</title>
+        <title>02 QC post alignment - Introduction to NGS ATAC-seq data analysis</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +43,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,9 +75,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Introduction to NGS ATAC-seq data analysis" class="md-header__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
+    <a href="../.." title="Introduction to NGS ATAC-seq data analysis" class="md-header__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
       
-  <img src="/assets/images/SIB_logo.svg" alt="logo">
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -90,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              02 QC post alignment
             
           </span>
         </div>
@@ -180,9 +184,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Introduction to NGS ATAC-seq data analysis" class="md-nav__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
+    <a href="../.." title="Introduction to NGS ATAC-seq data analysis" class="md-nav__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
       
-  <img src="/assets/images/SIB_logo.svg" alt="logo">
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
 
     </a>
     Introduction to NGS ATAC-seq data analysis
@@ -209,7 +213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -231,7 +235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/precourse/" class="md-nav__link">
+      <a href="../../precourse/" class="md-nav__link">
         
   
   
@@ -253,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/course_schedule/" class="md-nav__link">
+      <a href="../../course_schedule/" class="md-nav__link">
         
   
   
@@ -272,18 +276,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -299,7 +305,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Day1
@@ -313,7 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/00_connect_to_server.md" class="md-nav__link">
+      <a href="../00_connect_to_server.md" class="md-nav__link">
         
   
   
@@ -336,7 +342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/01_filter_bam_files/" class="md-nav__link">
+      <a href="../01_filter_bam_files/" class="md-nav__link">
         
   
   
@@ -356,10 +362,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/days/02_QC_post_alignment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -370,6 +383,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -382,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/03_peak_calling/" class="md-nav__link">
+      <a href="../03_peak_calling/" class="md-nav__link">
         
   
   
@@ -405,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/04_build_consensus_peak_set/" class="md-nav__link">
+      <a href="../04_build_consensus_peak_set/" class="md-nav__link">
         
   
   
@@ -428,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/05_quantify_peaks/" class="md-nav__link">
+      <a href="../05_quantify_peaks/" class="md-nav__link">
         
   
   
@@ -451,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/days/06_differential_accessibility_analysis/" class="md-nav__link">
+      <a href="../06_differential_accessibility_analysis/" class="md-nav__link">
         
   
   
@@ -502,8 +516,78 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+  <h1>02 QC post alignment</h1>
+
+<p>In order to assess the quality of the ATACseq experiment, there are several metrics that can be calculated from the aligned reads.</p>
+<p>Important metrics include:
+ - Fragment size distribution: The distribution of fragment sizes can indicate the quality of the library preparation. A good ATAC-seq library should have a characteristic pattern with peaks corresponding to nucleosome-free regions (NFRs) and mono-, di-, and tri-nucleosomes.
+ - TSS enrichment: The enrichment of reads at transcription start sites (TSS) is a key indicator of data quality. High-quality ATAC-seq data should show a strong enrichment of reads at TSSs.</p>
+<p><code>ATAQV</code> is a tool that calculates a variety of QC metrics for ATAC-seq data. It provides a comprehensive report that includes fragment size distribution, TSS enrichment, and other important metrics. </p>
+<p><strong>Task 1</strong></p>
+<ul>
+<li>Create a new folder for QC results called: <code>results/02_QC_post_aligment</code></li>
+<li>Run ATAQV on each filtered .bam file </li>
+<li>Using ATAQV tool, create a report from all ATAQV sample results</li>
+</ul>
+<div class="admonition ataqv">
+<p class="admonition-title">Ataqv</p>
+<p>You can find further information about ATAQC tool and commands in the Usage section <a href="https://github.com/ParkerLab/ataqv">here</a>
+Ataqv needs a Transcription Start Site (TSS) reference file to compute TSS enrichment score. You will find this file in: <code>data/references/ENCODE_mm10_M21_TSS_reference.bed</code>
+We have downloaded the TSS reference gile from ENCODE project (https://www.encodeproject.org/files/ENCFF498BEJ/)</p>
+</div>
+<details>
+<summary>Hint</summary>
+   First run ataqv for each "*qc_bl_filt.sorted.bam" file, important parameters are: --tss-file, mouse, --metrics-file
+   Second run mkarv with all "*json" files
+</details>
+
+<details class="success">
+<summary>Solution</summary>
+<p><div class="highlight"><pre><span></span><code>mkdir -p results/02_QC_post_aligment
+TSS_bed=&quot;data/references/ENCODE_mm10_M21_TSS_reference.bed&quot;
+
+for bam in results/01_filtered_bams/*qc_bl_filt.sorted.bam; do
+    echo &quot;Processing file: $bam&quot;
+    sample_name=$(basename &quot;$bam&quot; .qc_bl_filt.sorted.bam) # extract sample name without path and extension
+    echo $sample_name
+    ataqv --name $sample_name --metrics-file results/02_QC_post_aligment/$sample_name.ataqv.json --tss-file $TSS_bed mouse $bam &gt; results/02_QC_post_aligment/$sample_name.ataqv.out
+done
+
+cd results/02_QC_post_aligment
+mkarv summary_ataqv PC_rep1.ataqv.json PC_rep2.ataqv.json RACM_rep1.ataqv.json RACM_rep2.ataqv.json 
+cd ../../
+</code></pre></div>
+parametr explanation:<br />
+ &ndash;name: sample name for output files<br />
+ &ndash;metrics-file: output file for metrics in json format<br />
+ &ndash;tss-file: bed file with TSS locations<br />
+ mouse: genome (can be mouse or human)<br />
+ $bam: input bam file<br />
+mkarv is a tool to create a summary report from multiple ataqv json files</p>
+</details>
+<p><strong>Task 2</strong></p>
+<p>Open the QC report <code>results/02_QC_post_aligment/summary_ataqv/index.html</code> and have a look at the QC metrics. Do you think the experiment worked well? 
+Is there some metrics that would concern you?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -539,10 +623,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": [], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

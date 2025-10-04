@@ -1,0 +1,841 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../course_schedule/">
+      
+      
+        <link rel="next" href="../02_QC_post_alignment/">
+      
+      
+      <link rel="icon" href="../../assets/images/SIB_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>01 Filter bam files - Introduction to NGS ATAC-seq data analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0-dataset" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Introduction to NGS ATAC-seq data analysis" class="md-header__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
+      
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to NGS ATAC-seq data analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              01 Filter bam files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sib-swiss/gh-pages-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sib-swiss/gh-pages-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Introduction to NGS ATAC-seq data analysis" class="md-nav__button md-logo" aria-label="Introduction to NGS ATAC-seq data analysis" data-md-component="logo">
+      
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
+
+    </a>
+    Introduction to NGS ATAC-seq data analysis
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sib-swiss/gh-pages-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sib-swiss/gh-pages-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precourse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Precourse preparations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Day1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Day1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_connect_to_server.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    00 Connect to server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    01 Filter bam files
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    01 Filter bam files
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-filtering-reads-from-alignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Filtering reads from alignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Filtering reads from alignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-ngs-filtering-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      General NGS filtering steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atacseq-related-filtering-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATACseq related filtering steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_QC_post_alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02 QC post alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_peak_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    03 Peak calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_build_consensus_peak_set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    04 Build consensus peak set
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_quantify_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    05 Quantify peaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_differential_accessibility_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06 Differential accessibility analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-filtering-reads-from-alignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Filtering reads from alignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Filtering reads from alignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-ngs-filtering-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      General NGS filtering steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atacseq-related-filtering-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATACseq related filtering steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>01 Filter bam files</h1>
+
+<p>Post Alignment reads filtering</p>
+<h2 id="0-dataset">0. Dataset</h2>
+<p>We are going to work with a subset of the publicly available dataset from Galang.et al. 2020 
+<a href="https://www.ebi.ac.uk/ena/browser/view/PRJNA624859">(GEO accession)</a></p>
+<p>Out dataset contains 2 conditions, with 2 replicates each:<br />
+<strong>PC</strong>: <em>Rep1</em>, <em>Rep2</em> <br />
+<strong>RACM</strong>: <em>Rep1</em>, <em>Rep2</em> </p>
+<blockquote>
+<p>If you are interested in the biological questions behind, have a look to the publication.</p>
+</blockquote>
+<p>In order to save time, the raw reads have already been trimmed using <a href="https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/">Trim Galore</a> and mapped to the reference genome (mm10) using <a href="https://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> in end-to-end mode.  </p>
+<p>We will start the analysis directly from the alignment output (<strong>.bam</strong> files). To avoid large waiting times during high-demanding computational steps .bam files have been subset to keep only reads aligning to chromosome 13.  </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find the .bam files in <code>/data/input_data/alignments_Galang_chr13/</code> folder</p>
+</div>
+<h2 id="1-filtering-reads-from-alignments">1. Filtering reads from alignments</h2>
+<h4 id="general-ngs-filtering-steps">General NGS filtering steps</h4>
+<p>In order to keep good quality data, read filtering criteria can be applied. These creteria are similar to the ones we would apply when analysing any other NGS related dataset (ie. remove duplicated reads, read mapping quality thresholds, etc.). They will depend on the quality of the data and the downstream analysis that will be applied.</p>
+<p>We can use tools like <a href="https://broadinstitute.github.io/picard/">picard</a> to indetify and mark read duplicates, which originate most likely from PCR amplifications. This step has already been performed for you, and read duplicates have been marked in the provided .bam files. If you want to know more about this tool and how it works you can have a look <a href="https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates">here</a>.</p>
+<p><strong>Task 1:</strong> </p>
+<ul>
+<li>
+<p>Create an output folder named: <code>results/01_filtered_bams</code></p>
+</li>
+<li>
+<p>Using <code>samtools view</code>, select/filter reads from .bam files in order to apply the following criteria: </p>
+<ul>
+<li>Keep only paired reads </li>
+<li>Remove unmapped reads</li>
+<li>Remove reads who&rsquo;s mate is unmapped</li>
+<li>Remove read duplicates</li>
+<li>Remove not primary alignment reads</li>
+<li>Keep mapping quality &gt; 10</li>
+</ul>
+</li>
+</ul>
+<p>Save the results in <code>results/01_filtered_bams</code> in BAM format with the following output name: <code>&lt;sample name&gt;.qc_filt.bam</code></p>
+<div class="admonition samtools view useful parameters">
+<p class="admonition-title">Samtools</p>
+<p>Use the samtools view manual <a href="https://www.htslib.org/doc/samtools-view.html">here</a> to understand which parameters you need, and this useful <a href="https://broadinstitute.github.io/picard/explain-flags.html">page</a> from the broad institue to find what SAM Flag value would correspond to the combination of criteria we want to apply. </p>
+</div>
+<details>
+<summary>Hint</summary>
+You can use `-f` and `-F` flags to filter reads based on a combination of SAM Flags. You can use -q for MapQ, and -h and -b for output format. 
+</details>
+
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code># create new directory for filtered bams
+
+mkdir -p results/01_filtered_bams
+
+# filter files using a for loop
+
+for bam in data/alignments_Galang_chr13/*.bam; do
+    echo &quot;Processing file: $bam&quot;
+    sample_name=$(basename &quot;$bam&quot; .bam) # extract sample name without path and extension
+    samtools view -h -b -q 10 -f 1 -F 1292 --output results/01_filtered_bams/$sample_name.qc_filt.bam $bam
+done
+</code></pre></div>
+<p>-h: keep header; -b: output in bam format; -q 1: minimum mapping quality 10; -f 1: keep paired; -F 1292: exclude reads with any of the following flags: read unmapped, mate unmapped, not primary alignment, read is duplicate</p>
+</details>
+<p>Once we have our filtered bams, we will sort them and index them</p>
+<p><strong>Task 2:</strong> </p>
+<ul>
+<li>Use <code>samtools sort</code> to sort the filtered bam files (from previous task: <code>&lt;sample name&gt;.qc_filt.bam</code>). Save them in the same folder as: <code>&lt;sample name&gt;.qc_filt.sorted.bam</code></li>
+<li>Use <code>samtools index</code> to index the sorted bam files </li>
+</ul>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code>for bam in results/01_filtered_bams/*qc_filt.bam; do
+    echo &quot;Processing file: $bam&quot;
+    samtools sort -o ${bam%.bam}.sorted.bam $bam
+    samtools index ${bam%.bam}.sorted.bam
+done
+</code></pre></div>
+</details>
+<h4 id="atacseq-related-filtering-steps">ATACseq related filtering steps</h4>
+<p>Mitochondria DNA is nucleosome free, therefore it is more accessible for Tn5 and several reads may have originated from mitochondrial DNA. After having assessed mitochondrial % on the QC, we can discard reads coming from chmMT to avoid biases in downstream analsis.</p>
+<p>Since we are working only with chm 13 we don&rsquo;t need to do this step, but here is the command you could use for that:
+<div class="highlight"><pre><span></span><code>    samtools view -h input.bam | awk  &#39;($3 != &quot;MT&quot;)&#39; | samtools view -hb - &gt; output.bam
+</code></pre></div></p>
+<p>Next, we will remove reads overlapping problematic regions of the genome. ENCODE consortium has created comprehensive lists of such regions (anomalous, unstructured or high signal in NGS experiments) for different genome species (including mouse mm10). These lists are called ENCODE Blacklists, and you can find them <a href="https://github.com/Boyle-Lab/Blacklist/">here</a>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The regions for mm10 have been dowloaded as .bed file, and you will find it here: <code>data/references/mm10-blacklist.v2.nochr.bed</code></p>
+</div>
+<p><strong>Task 3</strong></p>
+<ul>
+<li>Using <code>bedtools intersect</code> filter out reads overlapping regions in the Blacklist .bed file</li>
+<li>Use previously filtered .bam files as input: <code>results/01_filtered_bams/*qc_filt.sorted.bam</code>, don&rsquo;t forget to specify your input is in BAM format</li>
+<li>Use the <code>data/references/mm10-blacklist.v2.nochr.bed</code> as regions to filter out reads from (it is already sorted)</li>
+<li>Save the results in <code>results/01_filtered_bams</code> in BAM format with the following output name: <code>&lt;sample name&gt;.qc_bl_filt.bam</code> </li>
+<li>Sort and index the resulting .bam with <code>samtools</code> and save them in <code>results/01_filtered_bams</code> with name  <code>&lt;sample name&gt;.qc_bl_filt.sorted.bam</code> </li>
+</ul>
+<div class="admonition bedtools intersect useful information">
+<p class="admonition-title">Bedtools</p>
+<p>Bedtools intersect allows one to screen for overlaps between two sets of genomic features/regions, and then decide on which kind of information do you want to report.
+Here, we will intersect: a) aligned reads to the genome (information in your .bam files)l b) Problematic regions listed in Blacklist .bed file
+We do not want to keep the reads that overlap Blacklist regions.
+You can find documentation on which parameters to use <a href="https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html">here</a></p>
+</div>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code>blacklist=&quot;data/references/mm10-blacklist.v2.nochr.bed&quot;
+
+for bam in results/01_filtered_bams/*qc_filt.sorted.bam; do
+    echo &quot;Processing file: $bam&quot;
+    sample_name=$(basename &quot;$bam&quot; .qc_filt.sorted.bam) 
+    bedtools intersect -v -abam $bam -b $blacklist &gt; results/01_filtered_bams/$sample_name.qc_bl_filt.bam
+    samtools sort -o results/01_filtered_bams/$sample_name.qc_bl_filt.sorted.bam results/01_filtered_bams/$sample_name.qc_bl_filt.bam
+    samtools index results/01_filtered_bams/$sample_name.qc_bl_filt.sorted.bam
+done
+</code></pre></div>
+<p>Parameter explanation:<br />
+ -v: only report those entries in A that have no overlap with B<br />
+ -abam: input is in bam format </p>
+</details>
+<p>After sorting the .bam files, we don&rsquo;t need the unsorted .bam. To free some space we will remove the unsorted bam files (intermediate files).</p>
+<p><strong>Task 4</strong></p>
+<ul>
+<li>Remove intermediate files that we don&rsquo;t need anymore. </li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Run this script only if you named the files in the same way the tutorial mentioned, and only if you have finished the sorting and indexing steps from Task 2 and 3</p>
+</div>
+<div class="highlight"><pre><span></span><code>    rm results/01_filtered_bams/*qc_filt.bam
+    rm results/01_filtered_bams/*qc_bl_filt.bam
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

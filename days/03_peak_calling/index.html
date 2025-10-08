@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#subset-bams-to-keep-only-nf-fragments" class="md-skip">
+        <a href="#1-subset-bams-to-keep-only-nf-fragments" class="md-skip">
           Skip to content
         </a>
       
@@ -324,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../00_connect_to_server.md" class="md-nav__link">
+      <a href="../00_connect_to_server/" class="md-nav__link">
         
   
   
@@ -439,28 +439,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#subset-bams-to-keep-only-nf-fragments" class="md-nav__link">
+  <a href="#1-subset-bams-to-keep-only-nf-fragments" class="md-nav__link">
     <span class="md-ellipsis">
-      Subset .bams to keep only NF fragments
+      1. Subset .bams to keep only NF fragments
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#peak-calling" class="md-nav__link">
+  <a href="#2-peak-calling" class="md-nav__link">
     <span class="md-ellipsis">
-      Peak calling
+      2. Peak calling
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Peak calling">
+    <nav class="md-nav" aria-label="2. Peak calling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#macs3-based-on-nf-fragments" class="md-nav__link">
     <span class="md-ellipsis">
       MACS3 based on NF fragments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macs3-based-on-all-fragments" class="md-nav__link">
+    <span class="md-ellipsis">
+      MACS3 based on all fragments
     </span>
   </a>
   
@@ -549,6 +558,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_annotate_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    07 Annotate peaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -581,28 +613,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#subset-bams-to-keep-only-nf-fragments" class="md-nav__link">
+  <a href="#1-subset-bams-to-keep-only-nf-fragments" class="md-nav__link">
     <span class="md-ellipsis">
-      Subset .bams to keep only NF fragments
+      1. Subset .bams to keep only NF fragments
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#peak-calling" class="md-nav__link">
+  <a href="#2-peak-calling" class="md-nav__link">
     <span class="md-ellipsis">
-      Peak calling
+      2. Peak calling
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Peak calling">
+    <nav class="md-nav" aria-label="2. Peak calling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#macs3-based-on-nf-fragments" class="md-nav__link">
     <span class="md-ellipsis">
       MACS3 based on NF fragments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macs3-based-on-all-fragments" class="md-nav__link">
+    <span class="md-ellipsis">
+      MACS3 based on all fragments
     </span>
   </a>
   
@@ -634,7 +675,7 @@
 
   <h1>03 Peak calling</h1>
 
-<h2 id="subset-bams-to-keep-only-nf-fragments">Subset .bams to keep only NF fragments</h2>
+<h2 id="1-subset-bams-to-keep-only-nf-fragments">1. Subset .bams to keep only NF fragments</h2>
 <p>Before doing peak calling with MACS3, we will split fragments into nucleosome-free (NF) and nucleosome-associated fragments. 
 For that, we will filter the BAM files based on fragment length (insert size).
 We will then call the peaks based on NF reads only, and compare with peaks called on all reads (?)
@@ -662,8 +703,8 @@ mkdir -p results/01_filtered_bams/NF_bams
 # filter for NF fragments only
 
 for bam in results/01_filtered_bams/*qc_bl_filt.sorted.bam; do
-    echo &quot;Processing sample: $sample_name&quot;
     sample_name=$(basename &quot;$bam&quot; .qc_bl_filt.sorted.bam)
+    echo &quot;Processing sample: $sample_name&quot;
     samtools view -h $bam | awk &#39;substr($0,1,1)==&quot;@&quot; || ($9&gt;= 1 &amp;&amp; $9&lt;=100) || ($9&lt;=-1 &amp;&amp; $9&gt;=-100)&#39; | \
     samtools view -b &gt; results/01_filtered_bams/NF_bams/${sample_name}_NF.bam 
 done 
@@ -686,7 +727,7 @@ Parameter explanation:<br />
 done
 </code></pre></div>
 </details>
-<h2 id="peak-calling">Peak calling</h2>
+<h2 id="2-peak-calling">2. Peak calling</h2>
 <h3 id="macs3-based-on-nf-fragments">MACS3 based on NF fragments</h3>
 <p>Next we will call peaks using MACS3 on the NF reads only. This way, we focus on the fragments that are most likely to represent open chromatin regions only (nucleosome-free regions).</p>
 <p>MACS3 is a widely used peak calling tool that can handle both narrow and broad peaks. We will start using the &ldquo;callpeak&rdquo; function of MACS3 to identify peaks in the NF reads.</p>
@@ -710,6 +751,7 @@ done
 <p><div class="highlight"><pre><span></span><code>mkdir -p results/03_peak_calling/NF_peaks
 
 samples=(PC_rep1 PC_rep2 RACM_rep1 RACM_rep2)
+samples=(Kidney_rep1 Kidney_rep2 Cerebrum_rep1 Cerebrum_rep2)
 
 # process NF reads
 bams_path=&quot;results/01_filtered_bams/NF_bams&quot;
@@ -722,10 +764,11 @@ done
 parameters explanation:<br />
 -f BAMPE: input file format is BAM paired-end<br />
 -t: input file (BAM file)<br />
--g mm: genome size (mm for mouse, hs for human)<br />
+-g mm: It’s the mappable genome size or effective genome size (some are pre-computed, like mouse, and you can specify &ldquo;mm&rdquo;
 -q 0.01: q-value cutoff for peak detection<br />
 &ndash;outdir: output directory for peak files  </p>
 </details>
+<h3 id="macs3-based-on-all-fragments">MACS3 based on all fragments</h3>
 <p>We will do the same, but using all fragments in filtered .bam files </p>
 <p><strong>Task 4</strong></p>
 <ul>

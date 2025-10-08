@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../00_connect_to_server/">
+        <link rel="prev" href="../../course_schedule/">
       
       
-        <link rel="next" href="../02_QC_post_alignment/">
+        <link rel="next" href="../01_filter_bam_files/">
       
       
       <link rel="icon" href="../../assets/images/SIB_logo.svg">
@@ -20,7 +20,7 @@
     
     
       
-        <title>01 Filter bam files - Introduction to NGS ATAC-seq data analysis</title>
+        <title>00 Connect to server - Introduction to NGS ATAC-seq data analysis</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#0-dataset" class="md-skip">
+        <a href="#connect-to-rstudio-server" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01 Filter bam files
+              00 Connect to server
             
           </span>
         </div>
@@ -321,10 +321,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../00_connect_to_server/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -335,6 +344,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -344,30 +354,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    01 Filter bam files
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../01_filter_bam_files/" class="md-nav__link">
         
   
   
@@ -378,66 +368,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#0-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      0. Dataset
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-filtering-reads-from-alignments" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Filtering reads from alignments
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Filtering reads from alignments">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general-ngs-filtering-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      General NGS filtering steps
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#atacseq-related-filtering-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      ATACseq related filtering steps
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -605,56 +535,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#0-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      0. Dataset
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-filtering-reads-from-alignments" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Filtering reads from alignments
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Filtering reads from alignments">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general-ngs-filtering-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      General NGS filtering steps
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#atacseq-related-filtering-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      ATACseq related filtering steps
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -673,148 +555,23 @@
   
 
 
-  <h1>01 Filter bam files</h1>
-
-<h2 id="0-dataset">0. Dataset</h2>
-<p>We are going to work with a subset of the publicly available dataset from <a href="https://www.nature.com/articles/s41597-019-0071-0">Liu et al. 2019</a>.</p>
-<p>We are going to analyse and compare ATAC-seq data from 2 different adult mouse tissues:    <br />
-<strong>Kidney</strong>: <em>Rep1</em>, <em>Rep2</em> <br />
-<strong>Cerebrum</strong>: <em>Rep1</em>, <em>Rep2</em> </p>
-<blockquote>
-<p>Raw data can be found in <a href="https://www.ncbi.nlm.nih.gov/sra/SRP167062">NCBI Sequence Read Archive</a></p>
-</blockquote>
-<p>In order to save time, raw reads have already been trimmed using <a href="https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/">Trim Galore</a> and mapped to the reference genome (mm10) using <a href="https://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> in end-to-end mode. Therefore, we will start the analysis directly from the alignment output (<strong>.bam</strong> files).  </p>
-<p>To avoid large waiting times during high-demanding computational steps, .bam files have been subset to keep only reads aligning to chromosome 6.  </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can find the .bam files in <code>/data/Liu_alignments_chr6/</code> folder</p>
-</div>
-<h2 id="1-filtering-reads-from-alignments">1. Filtering reads from alignments</h2>
-<h3 id="general-ngs-filtering-steps">General NGS filtering steps</h3>
-<p>In order to keep good quality data, read filtering criteria can be applied. These creteria are similar to the ones we would apply when analysing any other NGS related dataset (ie. remove duplicated reads, read mapping quality thresholds, etc.). They will depend on the quality of the data and the downstream analysis that will be applied.</p>
-<p>We can use tools like <a href="https://broadinstitute.github.io/picard/">picard</a> to indetify and mark read duplicates, which originate most likely from PCR amplifications. This step has already been performed for you, and read duplicates have been marked in the provided .bam files. If you want to know more about this tool and how it works you can have a look <a href="https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates">here</a>.</p>
-<p><strong>Task 1:</strong> </p>
-<ul>
-<li>
-<p>Create new directory for filtered bams: <code>results/01_filtered_bams</code></p>
-</li>
-<li>
-<p>Using <code>samtools view</code>, select/filter reads from .bam files in order to apply the following criteria: </p>
-<ul>
-<li>Keep only paired reads </li>
-<li>Remove unmapped reads</li>
-<li>Remove reads who&rsquo;s mate is unmapped</li>
-<li>Remove read duplicates</li>
-<li>Remove not primary alignment reads</li>
-<li>Keep mapping quality &gt; 10</li>
-</ul>
-</li>
-</ul>
-<p>Save the results in <code>results/01_filtered_bams</code> in BAM format with the following output name: <code>&lt;sample name&gt;.qc_filt.bam</code></p>
-<div class="admonition samtools view useful parameters">
-<p class="admonition-title">Samtools</p>
-<p>Use the samtools view manual <a href="https://www.htslib.org/doc/samtools-view.html">here</a> to understand which parameters you need, and this useful <a href="https://broadinstitute.github.io/picard/explain-flags.html">page</a> from the broad institue to find what SAM Flag value would correspond to the combination of criteria we want to apply. </p>
-</div>
-<details>
-<summary>Hint</summary>
-You can use:  
- `-f` and `-F` flags to filter reads based on a combination of SAM Flags  
- `-q` for MapQ  
- `-h` to keep the .bam header  
- `-b` to get output in .bam format  
-</details>
-
-<details class="success">
-<summary>Solution</summary>
-<div class="highlight"><pre><span></span><code># create new directory for filtered bams
-
-mkdir -p results/01_filtered_bams
-
-# filter files using a for loop
-
-for bam in /data/Liu_alignments_chr6/*.bam; do
-    echo &quot;Processing file: $bam&quot;
-    sample_name=$(basename &quot;$bam&quot; .bam) # extract sample name without path and extension
-    samtools view -h -b -q 10 -f 1 -F 1292 -o results/01_filtered_bams/$sample_name.qc_filt.bam $bam
-done
+<h1 id="connect-to-rstudio-server">Connect to RStudio server</h1>
+<p>If you are enrolled in the course, you have access to RStudio server. You can find a link to it and your credentials to connect in the Google Docs that has been shared with you.  </p>
+<p>During the first part of the course we will be using bash commands and executing different software. For that, we will work on the built-in terminal of RStudio.   </p>
+<p>To access the terminal, select the tab <strong>Terminal</strong> on the top left of the panel:</p>
+<p><img alt="" src="../../assets/images/select_terminal_tab.png" width="300" /></p>
+<p>Check your current directory, you should be in your home directory <code>/home/rstudio</code> </p>
+<div class="highlight"><pre><span></span><code>pwd
 </code></pre></div>
-<p>-h: keep header; -b: output in bam format; -q 10: minimum mapping quality 10; -f 1: keep paired; -F 1292: exclude reads with any of the following flags: read unmapped, mate unmapped, not primary alignment, read is duplicate</p>
-</details>
-<p>After filtering we will sort and index the bam files for the next step</p>
-<p><strong>Task 2:</strong> </p>
-<ul>
-<li>Use <code>samtools sort</code> to sort the filtered bam files (from previous task: <code>&lt;sample name&gt;.qc_filt.bam</code>). Save them in the same folder as: <code>&lt;sample name&gt;.qc_filt.sorted.bam</code></li>
-<li>Use <code>samtools index</code> to index the sorted bam files </li>
-</ul>
-<details class="success">
-<summary>Solution</summary>
-<div class="highlight"><pre><span></span><code>for bam in results/01_filtered_bams/*qc_filt.bam; do
-    echo &quot;Processing file: $bam&quot;
-    samtools sort -o ${bam%.bam}.sorted.bam $bam
-    samtools index ${bam%.bam}.sorted.bam
-done
+<p>In order to activate your conda enviroment and have access to different tools necessary for this course, please run the following command in your terminal:</p>
+<div class="highlight"><pre><span></span><code>conda init
+source /home/rstudio/.bashrc
+conda activate atac_env
 </code></pre></div>
-</details>
-<p>To avoid confusion and large size files, we will keep only the sorted and indexed bams:
-<div class="highlight"><pre><span></span><code>rm results/01_filtered_bams/*qc_filt.bam
+<p>You should now be able to run tools like samtools, bedtools, macs2, etc. Check with:
+<div class="highlight"><pre><span></span><code>bedtools --version
 </code></pre></div></p>
-<h3 id="atacseq-related-filtering-steps">ATACseq related filtering steps</h3>
-<p>Mitochondria DNA is nucleosome free, therefore it is more accessible for Tn5 and several reads may have originated from mitochondrial DNA. After having assessed mitochondrial % on the QC, we can discard reads coming from chmMT to avoid biases in downstream analsis.</p>
-<p>Since we are working only with chm 13 we don&rsquo;t need to do this step, but here is the command you could use for that:
-<div class="highlight"><pre><span></span><code>samtools view -h input.bam | awk  &#39;($3 != &quot;MT&quot;)&#39; | samtools view -hb - &gt; output.bam
-</code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The mitochondrial chromosome name may differ depending on the reference genome (e.g., &ldquo;MT&rdquo;, &ldquo;chrM&rdquo;, &ldquo;chrMT&rdquo;).</p>
-</div>
-<p>Next, we will remove reads overlapping problematic regions of the genome. ENCODE consortium has created comprehensive lists of such regions (anomalous, unstructured or high signal in NGS experiments) for different genome species (including mouse mm10). These lists are called ENCODE Blacklists, and you can find them <a href="https://github.com/Boyle-Lab/Blacklist/">here</a>. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The regions for mm10 have been dowloaded as .bed file, and you will find it here: <code>/data/references/mm10-blacklist.v2.nochr.bed</code></p>
-</div>
-<p><strong>Task 3</strong></p>
-<ul>
-<li>Using <code>bedtools intersect</code> filter out reads overlapping regions in the Blacklist .bed file</li>
-<li>Use previously filtered .bam files as input: <code>results/01_filtered_bams/*qc_filt.sorted.bam</code>, don&rsquo;t forget to specify your input is in BAM format</li>
-<li>Use the <code>data/references/mm10-blacklist.v2.nochr.bed</code> as regions to filter out reads from (it is already sorted)</li>
-<li>Save the results in <code>results/01_filtered_bams</code> in BAM format with the following output name: <code>&lt;sample name&gt;.qc_bl_filt.bam</code> </li>
-<li>Sort and index the resulting .bam with <code>samtools</code> and save them in <code>results/01_filtered_bams</code> with name  <code>&lt;sample name&gt;.qc_bl_filt.sorted.bam</code> </li>
-</ul>
-<div class="admonition bedtools intersect useful information">
-<p class="admonition-title">Bedtools</p>
-<p>Bedtools intersect allows one to screen for overlaps between two sets of genomic features/regions, and then decide on which kind of information do you want to report.
-Here, we will intersect: a) aligned reads to the genome (information in your .bam files)l b) Problematic regions listed in Blacklist .bed file
-We do not want to keep the reads that overlap Blacklist regions.
-You can find documentation on which parameters to use <a href="https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html">here</a></p>
-</div>
-<details class="success">
-<summary>Solution</summary>
-<div class="highlight"><pre><span></span><code>blacklist=&quot;/data/references/mm10-blacklist.v2.nochr.bed&quot;
-
-for bam in results/01_filtered_bams/*qc_filt.sorted.bam; do
-    echo &quot;Processing file: $bam&quot;
-    sample_name=$(basename &quot;$bam&quot; .qc_filt.sorted.bam) 
-    bedtools intersect -v -abam $bam -b $blacklist &gt; results/01_filtered_bams/$sample_name.qc_bl_filt.bam
-    samtools sort -o results/01_filtered_bams/$sample_name.qc_bl_filt.sorted.bam results/01_filtered_bams/$sample_name.qc_bl_filt.bam
-    samtools index results/01_filtered_bams/$sample_name.qc_bl_filt.sorted.bam
-done
-</code></pre></div>
-<p>Parameter explanation:<br />
- -v: only report those entries in A that have no overlap with B<br />
- -abam: input is in bam format </p>
-</details>
-<p>After sorting the .bam files, we don&rsquo;t need the unsorted .bam. To free some space we will remove the unsorted bam files (intermediate files).</p>
-<p><strong>Task 4</strong></p>
-<ul>
-<li>Remove intermediate files that we don&rsquo;t need anymore. </li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Run this script only if you named the files in the same way the tutorial mentioned, and only if you have finished the sorting and indexing steps from Task 2 and 3</p>
-</div>
-<div class="highlight"><pre><span></span><code>    rm results/01_filtered_bams/*qc_filt.bam
-    rm results/01_filtered_bams/*qc_bl_filt.bam
-</code></pre></div>
+<p>For the second part of the course we will use only R commands. For that, we will move back to RStudio console, by selecting the tab <strong>Console</strong>.</p>
 
 
 

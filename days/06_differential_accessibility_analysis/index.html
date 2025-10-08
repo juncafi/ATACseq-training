@@ -12,6 +12,8 @@
         <link rel="prev" href="../05_quantify_peaks/">
       
       
+        <link rel="next" href="../07_annotate_peaks/">
+      
       
       <link rel="icon" href="../../assets/images/SIB_logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
@@ -62,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#import-read-counts-and-metadata" class="md-skip">
+        <a href="#1-import-read-counts-and-metadata" class="md-skip">
           Skip to content
         </a>
       
@@ -322,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../00_connect_to_server.md" class="md-nav__link">
+      <a href="../00_connect_to_server/" class="md-nav__link">
         
   
   
@@ -506,33 +508,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#import-read-counts-and-metadata" class="md-nav__link">
+  <a href="#1-import-read-counts-and-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Import read counts and metadata
+      1. Import read counts and metadata
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deseq-object-and-analysis" class="md-nav__link">
+  <a href="#2-deseq-object-and-analysis" class="md-nav__link">
     <span class="md-ellipsis">
-      DEseq object and analysis
+      2. DEseq object and analysis
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#differential-accessibility-results" class="md-nav__link">
+  <a href="#3-save-differential-accessibility-results" class="md-nav__link">
     <span class="md-ellipsis">
-      Differential Accessibility results
+      3. Save differential Accessibility results
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="3. Save differential Accessibility results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-granges-object" class="md-nav__link">
     <span class="md-ellipsis">
       Create GRanges object
@@ -540,11 +543,39 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_annotate_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    07 Annotate peaks
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -582,38 +613,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#import-read-counts-and-metadata" class="md-nav__link">
+  <a href="#1-import-read-counts-and-metadata" class="md-nav__link">
     <span class="md-ellipsis">
-      Import read counts and metadata
+      1. Import read counts and metadata
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deseq-object-and-analysis" class="md-nav__link">
+  <a href="#2-deseq-object-and-analysis" class="md-nav__link">
     <span class="md-ellipsis">
-      DEseq object and analysis
+      2. DEseq object and analysis
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#differential-accessibility-results" class="md-nav__link">
+  <a href="#3-save-differential-accessibility-results" class="md-nav__link">
     <span class="md-ellipsis">
-      Differential Accessibility results
+      3. Save differential Accessibility results
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="3. Save differential Accessibility results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-granges-object" class="md-nav__link">
     <span class="md-ellipsis">
       Create GRanges object
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -639,7 +676,7 @@
   <h1>06 Differential accessibility analysis</h1>
 
 <p>In the next step, we will start importing the read counts on consensus peaks (output from featureCounts) into R and perform differential accessibility analysis using DESeq2.</p>
-<h3 id="import-read-counts-and-metadata">Import read counts and metadata</h3>
+<h2 id="1-import-read-counts-and-metadata">1. Import read counts and metadata</h2>
 <p>We start by loading featureCounts output as a matrix of counts</p>
 <p>Load necessary packages for the analysis
     <div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">DESeq2</span><span class="p">)</span>
@@ -666,20 +703,20 @@
 <span class="w">                 </span><span class="nf">gsub</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="o">=</span><span class="s">&quot;.qc_bl_filt.sorted.bam&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">replacement</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 </details>
-<p>** Task 2**</p>
+<p><strong>Task 2</strong></p>
 <p>Create metadata table
 We need to create a data.frame containing metadata information about the samples.
 Here we have two conditions, PC and RACM, with two replicates each. We need to create a data.frame containing the conditions information for each sample. 
 If we would have a second factor, e.g. treatment (treated vs untreated), we would need to add this information as a second column in the data.frame.</p>
-<p>!!! Note:</p>
-<div class="codehilite"><pre><span></span><code>Important: The order of the rows in the data.frame must match the order of the columns in the counts matrix
-           The metadata data.frame must have factor variables (not character variables)
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">condition</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;PC&quot;</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;RACM&quot;</span><span class="p">,</span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Important: The order of the rows in the data.frame must match the order of the columns in the counts matrix
+           The metadata data.frame must have factor variables (not character variables)</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">condition</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;Cerebrum&quot;</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;Kidney&quot;</span><span class="p">,</span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
 <span class="n">colData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">cts</span><span class="p">))</span>
 </code></pre></div>
-<h3 id="deseq-object-and-analysis">DEseq object and analysis</h3>
+<h2 id="2-deseq-object-and-analysis">2. DEseq object and analysis</h2>
 <p>Bring together counts and metadata to create a DESeq object</p>
 <div class="highlight"><pre><span></span><code><span class="n">dds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DESeqDataSetFromMatrix</span><span class="p">(</span>
 <span class="w">  </span><span class="n">countData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cts</span><span class="p">,</span><span class="w"> </span><span class="n">colData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colData</span><span class="p">,</span><span class="w"> </span>
@@ -692,19 +729,24 @@ If we would have a second factor, e.g. treatment (treated vs untreated), we woul
 <span class="nf">dim</span><span class="p">(</span><span class="n">dds.f</span><span class="p">)</span>
 </code></pre></div>
 <p>We perform the estimation of dispersions</p>
-<div class="highlight"><pre><span></span><code><span class="n">dds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DESeq</span><span class="p">(</span><span class="n">dds.f</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">dds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DESeq</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
 </code></pre></div>
 <p>And plot PCA of the samples
-<div class="highlight"><pre><span></span><code><span class="n">vsd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">varianceStabilizingTransformation</span><span class="p">(</span><span class="n">dds.f</span><span class="p">,</span><span class="w"> </span><span class="n">blind</span><span class="o">=</span><span class="kc">TRUE</span><span class="w"> </span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">vsd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">varianceStabilizingTransformation</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="w"> </span><span class="n">blind</span><span class="o">=</span><span class="kc">TRUE</span><span class="w"> </span><span class="p">)</span>
 <span class="n">pcaData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plotPCA</span><span class="p">(</span><span class="n">vsd</span><span class="p">,</span><span class="w"> </span><span class="n">intgroup</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;condition&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ntop</span><span class="o">=</span><span class="s">&quot;all&quot;</span><span class="p">)</span>
 <span class="n">pcaData</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_label</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">PC1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">PC2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
-<span class="nf">plotPCA</span><span class="p">(</span><span class="n">vsd</span><span class="p">,</span><span class="w"> </span><span class="n">intgroup</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sizeFactor&quot;</span><span class="p">))</span>
+<span class="nf">plotPCA</span><span class="p">(</span><span class="n">vsd</span><span class="p">,</span><span class="w"> </span><span class="n">intgroup</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sizeFactor&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ntop</span><span class="o">=</span><span class="s">&quot;all&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="differential-accessibility-results">Differential Accessibility results</h3>
+<h2 id="3-save-differential-accessibility-results">3. Save differential Accessibility results</h2>
 <p>After the dispersion estimates have been calculated, we can proceed to test for differential accessibility between the two conditions (PC vs RACM).  </p>
 <p>The <code>results()</code> function extracts a results table with the log2 fold changes, p-values and adjusted p-values for each peak.
 <div class="highlight"><pre><span></span><code><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div></p>
+<p>We will save the results table in a new directory
+<div class="highlight"><pre><span></span><code><span class="nf">dir.create</span><span class="p">(</span><span class="s">&quot;results/06_DA_analysis&quot;</span><span class="p">)</span>
+<span class="n">DA_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="n">DA_results</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="s">&quot;results/06_DA_analysis/DA_results.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quote</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
 </code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -731,6 +773,8 @@ Granges class represents a collection of genomic ranges and associated data to t
 <span class="w">    </span><span class="nf">head</span><span class="p">(</span><span class="n">peaks_gr</span><span class="p">)</span>
 </code></pre></div>
 To this object <code>peaks_gr</code>, we will add other metadata along the downstream analysis. </p>
+<div class="highlight"><pre><span></span><code><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+</code></pre></div>
 
 
 

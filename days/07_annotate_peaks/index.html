@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../06_differential_accessibility_analysis/">
+      
       
       
       <link rel="icon" href="../../assets/images/SIB_logo.svg">
@@ -16,7 +18,7 @@
     
     
       
-        <title>07 annotate peaks - Introduction to NGS ATAC-seq data analysis</title>
+        <title>07 Annotate peaks - Introduction to NGS ATAC-seq data analysis</title>
       
     
     
@@ -59,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#peak-annotation-and-functional-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -90,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              07 annotate peaks
+              07 Annotate peaks
             
           </span>
         </div>
@@ -272,18 +279,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -299,7 +308,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Day1
@@ -313,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../00_connect_to_server.md" class="md-nav__link">
+      <a href="../00_connect_to_server/" class="md-nav__link">
         
   
   
@@ -467,6 +476,215 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    07 Annotate peaks
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    07 Annotate peaks
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-load-required-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Load Required Libraries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prepare-differential-accessibility-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Prepare Differential Accessibility Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-visualize-peak-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Visualize Peak Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-prepare-data-for-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Prepare Data for Annotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-annotate-genomic-overlap-with-chipseeker" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Annotate Genomic Overlap with ChIPseeker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Annotate Genomic Overlap with ChIPseeker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize-peak-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize Peak Annotations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-functional-enrichment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Functional Enrichment Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Functional Enrichment Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extract-genes-associated-with-promoter-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract Genes Associated with Promoter Peaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gene-ontology-go-enrichment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gene Ontology (GO) Enrichment Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-additional-visualizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Additional Visualizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Additional Visualizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peak-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Peak Heatmap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-additional-reference-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Additional Reference Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -491,6 +709,160 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-load-required-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Load Required Libraries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prepare-differential-accessibility-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Prepare Differential Accessibility Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-visualize-peak-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Visualize Peak Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-prepare-data-for-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Prepare Data for Annotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-annotate-genomic-overlap-with-chipseeker" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Annotate Genomic Overlap with ChIPseeker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Annotate Genomic Overlap with ChIPseeker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize-peak-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize Peak Annotations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-functional-enrichment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Functional Enrichment Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Functional Enrichment Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extract-genes-associated-with-promoter-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract Genes Associated with Promoter Peaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gene-ontology-go-enrichment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gene Ontology (GO) Enrichment Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-additional-visualizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Additional Visualizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Additional Visualizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peak-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Peak Heatmap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-additional-reference-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Additional Reference Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -509,13 +881,241 @@
   
 
 
-  <h1>07 annotate peaks</h1>
+<h1 id="peak-annotation-and-functional-analysis">Peak Annotation and Functional Analysis</h1>
+<p>After performing differential accessibility analysis with DESeq2, we will annotate peaks based on their genomic location using ChIPseeker and perform functional enrichment analysis.</p>
+<h2 id="overview">Overview</h2>
+<p>In this section, we will:
+1. Load the necessary libraries for peak annotation
+2. Prepare our differential accessibility results for annotation
+3. Visualize peak distribution across the genome
+4. Annotate peaks with genomic features
+5. Perform functional enrichment analysis</p>
+<h2 id="1-load-required-libraries">1. Load Required Libraries</h2>
+<p>First, let&rsquo;s load the necessary R packages for peak annotation and functional analysis:</p>
+<div class="highlight"><pre><span></span><code># Load libraries
+library(ChIPseeker)
+require(&quot;TxDb.Mmusculus.UCSC.mm10.knownGene&quot;)
+library(clusterProfiler)
+library(&quot;org.Mm.eg.db&quot;)
 
-<p>library(ChIPseeker)
-library(TxDb.Mmusculus.UCSC.mm10.knownGene)
-library(clusterProfiler)</p>
-<p>peak = makeGRangesFromDataFrame(cts_table, keep.extra.columns=T)
-covplot(peak)</p>
+# Set up annotation databases
+TxDb &lt;- TxDb.Mmusculus.UCSC.mm10.knownGene
+AnnoDb &lt;- &#39;org.Mm.eg.db&#39;
+</code></pre></div>
+<h2 id="2-prepare-differential-accessibility-results">2. Prepare Differential Accessibility Results</h2>
+<p>Now let&rsquo;s prepare our data by combining the differential accessibility statistics with the count data:</p>
+<div class="highlight"><pre><span></span><code># Load again the counts table
+counts_file &lt;- &quot;results/05_counts_reads/feature_Counts.txt&quot;
+cts_table &lt;- read.table(counts_file, header = T)
+
+# Load the results from DESeq2 and extract relevant columns from DESeq2 results
+res &lt;- read.table(&quot;results/06_DA_analysis/DA_results.txt&quot;)
+DA_stats &lt;- as.data.frame(res)[c(2,3,5,6)]
+
+# Clean column names from count table
+colnames(cts_table) &lt;- gsub(colnames(cts_table), pattern = &quot;results.01_filtered_bams.&quot;, replacement = &quot;&quot;) %&gt;% 
+  gsub(., pattern=&quot;.qc_bl_filt.sorted.bam&quot;, replacement=&quot;&quot;)
+
+# Merge differential accessibility stats with count data
+peaks_df &lt;- merge(DA_stats, cts_table, by.x=&quot;row.names&quot;, by.y=&quot;Geneid&quot;)
+
+# Add &#39;chr&#39; prefix to chromosome names for consistency
+peaks_df$Chr &lt;- paste0(&quot;chr&quot;, peaks_df$Chr)
+
+# Create GRanges object for downstream analysis
+gr &lt;- makeGRangesFromDataFrame(peaks_df, keep.extra.columns=TRUE)
+</code></pre></div>
+<h2 id="3-visualize-peak-distribution">3. Visualize Peak Distribution</h2>
+<p>Let&rsquo;s visualize how our peaks are distributed across the genome and their fold changes:</p>
+<div class="highlight"><pre><span></span><code># Create coverage plot showing peak positions and their fold changes
+covplot(gr, weightCol = &quot;log2FoldChange&quot;)
+</code></pre></div>
+<p>This plot shows the distribution of peaks across chromosomes, with y-axis representing the log2 fold change values.</p>
+<h2 id="4-prepare-data-for-annotation">4. Prepare Data for Annotation</h2>
+<div class="highlight"><pre><span></span><code># Sort the GRanges object by genomic coordinates
+gr &lt;- sort(gr, by = ~ seqnames + start + end)
+
+# Split peaks into upregulated and downregulated based on significance and fold change
+gr_list &lt;- list(
+  up = gr[gr$padj &lt; 0.01 &amp; gr$log2FoldChange &gt; 2,], 
+  down = gr[gr$padj &lt; 0.01 &amp; gr$log2FoldChange &lt; -2,]
+)
+
+
+
+
+# Check the structure of our peak lists
+head(gr_list)
+</code></pre></div>
+<p><strong>Task 1</strong> </p>
+<ul>
+<li>Check how many significantly upregulated and downregulated peaks we have:</li>
+</ul>
+<div class="highlight"><pre><span></span><code># Count peaks in each category
+cat(&quot;Number of upregulated peaks:&quot;, length(gr_list$up), &quot;\n&quot;)
+cat(&quot;Number of downregulated peaks:&quot;, length(gr_list$down), &quot;\n&quot;)
+</code></pre></div>
+<h2 id="5-annotate-genomic-overlap-with-chipseeker">5. Annotate Genomic Overlap with ChIPseeker</h2>
+<p>Now we&rsquo;ll annotate our peaks to determine their genomic context (promoters, exons, introns, etc.):</p>
+<div class="highlight"><pre><span></span><code># Annotate upregulated peaks
+peakAnno_up &lt;- annotatePeak(gr_list$up, 
+                           tssRegion = c(-1000, 1000), 
+                           TxDb = TxDb, 
+                           annoDb = AnnoDb, 
+                           overlap = &quot;TSS&quot;)
+
+# Annotate downregulated peaks
+peakAnno_down &lt;- annotatePeak(gr_list$down, 
+                             tssRegion = c(-1000, 1000), 
+                             TxDb = TxDb, 
+                             annoDb = AnnoDb, 
+                             overlap = &quot;TSS&quot;)
+
+
+# Save the objects
+# Save the objects
+saveRDS(peakAnno_up, &quot;results/06_DA_analysis/Annotated_peaks_up.rds&quot;)
+saveRDS(peakAnno_down, &quot;results/06_DA_analysis/Annotated_peaks_down.rds&quot;)
+saveRDS(gr, &quot;results/06_DA_analysis/gr_peaks.rds&quot;)
+</code></pre></div>
+<p><strong>Task 2</strong>  </p>
+<ul>
+<li>Examine the annotation results</li>
+</ul>
+<div class="highlight"><pre><span></span><code># Look at the upregulated peaks annotation summary
+peakAnno_up
+
+# Count how many downregulated peaks are in promoter regions
+sum(peakAnno_down@detailGenomicAnnotation$Promoter)
+</code></pre></div>
+<h3 id="visualize-peak-annotations">Visualize Peak Annotations</h3>
+<p>Create pie charts to visualize the genomic distribution of our peaks:</p>
+<div class="highlight"><pre><span></span><code># Plot pie charts for peak categories
+plotAnnoPie(peakAnno_up, main = &quot;\n\nDA up&quot;) 
+plotAnnoPie(peakAnno_down, main = &quot;\n\nDA down&quot;)
+</code></pre></div>
+<p>These plots show the percentage of peaks falling into different genomic categories (promoters, exons, introns, intergenic regions, etc.).</p>
+<h2 id="6-functional-enrichment-analysis">6. Functional Enrichment Analysis</h2>
+<p>Next, we will focus in peaks overlaping promoter regions (TSS) of genes, and we will perform functional enrichment analysis on those genes to understand which biological processes or metabolic pathways may be afected by the changes in chromatin accessibility.</p>
+<h3 id="extract-genes-associated-with-promoter-peaks">Extract Genes Associated with Promoter Peaks</h3>
+<div class="highlight"><pre><span></span><code># Extract gene symbols for peaks in promoter regions
+genes_tss_up &lt;- peakAnno_up@anno[peakAnno_up@detailGenomicAnnotation$Promoter, &quot;SYMBOL&quot;]
+genes_tss_down &lt;- peakAnno_down@anno[peakAnno_down@detailGenomicAnnotation$Promoter, &quot;SYMBOL&quot;]
+
+# Create universe of genes with all promoter-overlapping peaks for background
+peakAnno &lt;- annotatePeak(gr, 
+                        tssRegion = c(-1000, 1000), 
+                        TxDb = TxDb, 
+                        annoDb = AnnoDb, 
+                        overlap = &quot;TSS&quot;)
+universe &lt;- peakAnno@anno[peakAnno@detailGenomicAnnotation$Promoter,]$SYMBOL
+</code></pre></div>
+<h3 id="gene-ontology-go-enrichment-analysis">Gene Ontology (GO) Enrichment Analysis</h3>
+<p>Perform GO enrichment analysis for upregulated peaks:</p>
+<div class="highlight"><pre><span></span><code># GO enrichment for upregulated genes
+ego_up &lt;- enrichGO(gene          = genes_tss_up$SYMBOL,
+                   universe      = unique(universe),
+                   OrgDb         = org.Mm.eg.db,
+                   keyType       = &quot;SYMBOL&quot;,
+                   ont           = &quot;BP&quot;,  # Molecular Function
+                   pAdjustMethod = &quot;BH&quot;,
+                   pvalueCutoff  = 0.05,
+                   qvalueCutoff  = 0.05,
+                   readable      = TRUE)
+
+# Plot results
+ego_up
+</code></pre></div>
+<p><strong>Task 3</strong>  </p>
+<ul>
+<li>
+<p>Did you find significantly enriched GO terms?  </p>
+</li>
+<li>
+<p>Try to run the same analysis considering all genes as a universe, why do you think there is a difference?  </p>
+</li>
+<li>
+<p>Visualise the GO terms using a function from <a href="https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html">ClusterProfiler</a> such as: <code>barplot()</code></p>
+</li>
+</ul>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code># GO enrichment for upregulated genes
+ego_up &lt;- enrichGO(gene          = genes_tss_up$SYMBOL,
+                universe      = unique(universe),
+                OrgDb         = org.Mm.eg.db,
+                keyType       = &quot;SYMBOL&quot;,
+                ont           = &quot;BP&quot;,  # Molecular Function
+                pAdjustMethod = &quot;BH&quot;,
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05,
+                readable      = TRUE)
+
+# Plot results
+print(barplot(ego_down, showCategory = 20))
+</code></pre></div>
+</details>
+<p><strong>Task 4</strong></p>
+<ul>
+<li>Perform GO enrichment analysis for downregulated peaks using all genes as universe:</li>
+</ul>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code># GO enrichment for downregulated genes
+ego_down &lt;- enrichGO(gene          = genes_tss_down$SYMBOL,
+                    OrgDb         = org.Mm.eg.db,
+                    keyType       = &quot;SYMBOL&quot;,
+                    ont           = &quot;BP&quot;,  # Molecular Function
+                    pAdjustMethod = &quot;BH&quot;,
+                    pvalueCutoff  = 0.05,
+                    qvalueCutoff  = 0.05,
+                    readable      = TRUE)
+
+# Plot results
+print(barplot(ego_down, showCategory = 20))
+</code></pre></div>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Next Steps</p>
+<p>You can change the <code>ont</code> parameter to explore different aspects:
+- &ldquo;MF&rdquo;: Molecular Function
+- &ldquo;BP&rdquo;: Biological Process<br />
+- &ldquo;CC&rdquo;: Cellular Component</p>
+</div>
+<h2 id="7-additional-visualizations">7. Additional Visualizations</h2>
+<h3 id="peak-heatmap">Peak Heatmap</h3>
+<p>Create a heatmap showing peak signal around gene bodies:</p>
+<div class="highlight"><pre><span></span><code># Generate peak heatmap around gene bodies
+peakHeatmap(peak = gr,
+            TxDb = TxDb,
+            upstream = rel(0.2),
+            downstream = rel(0.2),
+            by = &quot;gene&quot;,
+            type = &quot;body&quot;,
+            nbin = 800)
+</code></pre></div>
+<h3 id="load-additional-reference-data">Load Additional Reference Data</h3>
+<div class="highlight"><pre><span></span><code># Load TSS reference data for additional analysis
+tss_bed &lt;- read.table(&quot;data/references/ENCODE_mm10_M21_TSS_reference.bed&quot;)
+</code></pre></div>
+<h2 id="summary">Summary</h2>
+<p>In this tutorial, we have:</p>
+<ol>
+<li>✅ Loaded necessary libraries for peak annotation</li>
+<li>✅ Prepared differential accessibility results for analysis</li>
+<li>✅ Visualized peak distribution across the genome</li>
+<li>✅ Annotated peaks with genomic features using ChIPseeker</li>
+<li>✅ Performed functional enrichment analysis on genes associated with promoter peaks</li>
+<li>✅ Created visualizations to interpret the biological significance of our results</li>
+</ol>
+<p>The results from this analysis help us understand:
+- Where our differentially accessible peaks are located in the genome
+- Which genes might be affected by changes in chromatin accessibility
+- What biological processes or molecular functions are enriched in our peak sets</p>
+<div class="admonition tip">
+<p class="admonition-title">Next Steps</p>
+<p>Consider exploring different GO ontology categories (BP, CC) and other enrichment databases like KEGG pathways for a more comprehensive functional analysis.</p>
+</div>
 
 
 

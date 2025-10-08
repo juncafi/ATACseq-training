@@ -319,7 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../00_connect_to_server.md" class="md-nav__link">
+      <a href="../00_connect_to_server/" class="md-nav__link">
         
   
   
@@ -481,6 +481,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_annotate_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    07 Annotate peaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -551,7 +574,7 @@ We have downloaded the TSS reference gile from ENCODE project (https://www.encod
 <details class="success">
 <summary>Solution</summary>
 <p><div class="highlight"><pre><span></span><code>mkdir -p results/02_QC_post_aligment
-TSS_bed=&quot;data/references/ENCODE_mm10_M21_TSS_reference.bed&quot;
+TSS_bed=&quot;/data/references/ENCODE_mm10_M21_TSS_reference.bed&quot;
 
 for bam in results/01_filtered_bams/*qc_bl_filt.sorted.bam; do
     echo &quot;Processing file: $bam&quot;
@@ -561,7 +584,7 @@ for bam in results/01_filtered_bams/*qc_bl_filt.sorted.bam; do
 done
 
 cd results/02_QC_post_aligment
-mkarv summary_ataqv PC_rep1.ataqv.json PC_rep2.ataqv.json RACM_rep1.ataqv.json RACM_rep2.ataqv.json 
+mkarv summary_ataqv Kidney_rep1.ataqv.json Kidney_rep2.ataqv.json Cerebrum_rep1.ataqv.json Cerebrum_rep2.ataqv.json 
 cd ../../
 </code></pre></div>
 parametr explanation:<br />

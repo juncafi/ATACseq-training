@@ -5,8 +5,14 @@ nav:
     - Precourse preparations: precourse.md
     - Course schedule: course_schedule.md
     - Day1:
-      - 00 Connect to server : 00_connect_to_server.md
-      - 01 Filter bam files : 01_filter_bam_files.md  
+      - 00 Connect to server : days/00_connect_to_server.md
+      - 01 Filter bam files : days/01_filter_bam_files.md  
+      - 02 QC post alignment : days/02_QC_post_alignment.md
+      - 03 Peak calling : days/03_peak_calling.md
+      - 04 Build consensus peak set : days/04_build_consensus_peak_set.md
+      - 05 Quantify peaks : days/05_quantify_peaks.md
+      - 06 Differential accessibility analysis : days/06_differential_accessibility_analysis.md
+      - 07 Annotate peaks : days/07_annotate_peaks.md
 
 theme:
   name: material

@@ -42,3 +42,4 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/rstudio/.bashrc
 
 # Install R packages
 RUN Rscript -e "install.packages('BiocManager'); BiocManager::install(c('GenomicAlignments','ggplot2','rtracklayer','dplyr','EnhancedVolcano','ChIPseeker', 'pheatmap','RColorBrewer', 'clusterProfiler','enrichplot'))"
+RUN Rscript -e "BiocManager::install(c('DESeq2','apeglm','TxDb.Mmusculus.UCSC.mm10.knownGene','org.Mm.eg.db','rGREAT','GenomicRanges'))"
